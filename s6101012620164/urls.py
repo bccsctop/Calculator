@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from calculator import views
+from calculator_post import views
+from calculator_get import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index,name='index')
+    path('cal_post',views.index,name='index2'),
+    path('cal_get',views.home, name ='index2'),
 ]

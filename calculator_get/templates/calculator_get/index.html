@@ -11,7 +11,7 @@
 
 <body>
     <h1>Calculator</h1>
-    <form action='{% url "index" %}' method="POST">
+    <form action='{% url "index" %}' method="GET">
         <p>Number 1 
         <input type='number' step="any" name='input1' placeholder="Enter your numer"><br>
         </p>
@@ -26,9 +26,11 @@
         <input type="submit"  name="divide" class="size" value="/">
         <br>
     </form>
-    {% if result %}
+
+    
     <p>Result :{{result}}</p>
-    {% endif %}
+
+
 </body>
 
 </html>
