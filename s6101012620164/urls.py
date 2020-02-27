@@ -23,4 +23,6 @@ urlpatterns = [
     path('',views.home_page,name='homepage'),
     path('cal_get',include('calculator_get.urls')),
     path('cal_post', views.index, name='index'),
+    path('removehistory/<str:id>', views.remove_history,name='removehistory'),
+    path('removeallhistory/',views.remove_all_history,name='removeallhistory')
 ]
