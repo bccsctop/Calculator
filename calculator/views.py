@@ -1,5 +1,9 @@
 from django.shortcuts import render , redirect
-from .models import History
+
+
+def home_page (request):
+    return render(request,'calculator/homepage.html')
+
 
 
 
@@ -31,11 +35,9 @@ def index(request):
             operator = '/'
             result = float(x) / float(y)
 
-        History.objects.create(input1=x , input2=y ,result=result,operator=operator)
         
-        all_history = History.objects.all()
-        return render(request, 'calculator/index.html',{'result': str(result) ,
-         'allhistory':all_history})
+        return render(request, 'calculator/index.html',{'result': str(result) })
+         
 
-    all_history = History.objects.all()
-    return render(request, 'calculator/index.html',{'allhistory':all_history})
+   
+    return render(request, 'calculator/index.html')
