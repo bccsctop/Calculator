@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import History
 
 
 def index (request):
@@ -30,6 +31,22 @@ def index (request):
             result = float(x) / float(y)
 
 
-        return render(request, 'calculator_get/index.html',{'result': str(result) })
+        History.objects.create(input1=x , input2=y,result=result,operator=operator)
+        all_history = History.objects.all()
+
+        return render(request, 'calculator/index.html',{'result': str(result) ,'allhistory':all_history})
+         
 
     return render(request, 'calculator_get/index.html')
+
+
+def remove_history(request,id):
+    History.objects.get(id=id).delete()
+    all_history = History.objects.all()
+    return render(request, 'calculator/index.html',{
+         'allhistory':all_history})
+
+def remove_all_history(request):
+    allhistory = History.objects.all()
+    allhistory.delete()
+    return render(request,'calculator/index.html')

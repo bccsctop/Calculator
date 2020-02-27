@@ -27,8 +27,25 @@
         <br>
     </form>
 
-    
+    {% if result %}
     <p>Result :{{result}}</p>
+    {% endif %}
+
+    {% if allhistory %}
+        <h2>History  </h2>
+        <form action='{% url "removeallhistory" %}' method="GET" >
+            {% csrf_token %}
+            <input type="submit" name="remove_all" value="Remove all">
+        </form>
+        {% for History in allhistory %}
+        <form action="{% url 'removehistory' History.id %}" method="GET">
+            {%csrf_token %} 
+            <p><input type="submit" class="button"  name="history" value="X" >
+                {{ History.input1 }} {{ History.operator }} {{ History.input2 }} = {{ History.result }} 
+            </p>
+        </form>
+        {% endfor %}
+    {% endif %}
 
 
 </body>
